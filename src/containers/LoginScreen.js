@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import DocumentTitle from 'react-document-title'
 import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward'
 import { Card, CardActions, CardText, CardTitle } from 'material-ui/Card'
+import Snackbar from 'material-ui/Snackbar'
 import RaisedButton from 'material-ui/RaisedButton'
 import TextField from 'material-ui/TextField'
 import '../styles/LoginScreen.styl'
@@ -10,9 +11,14 @@ import { connect } from 'react-redux'
 import { login } from '../action-creators'
 
 export class LoginScreen extends Component {
+  constructor () {
+    super()
+    this.state = {hasTriedToLogin: false}
+  }
   @autobind
   login (event) {
     event.preventDefault()
+    this.setState({hasTriedToLogin: true})
     this.props.dispatch(login(this.userRoom, this.password))
   }
 
@@ -45,6 +51,7 @@ export class LoginScreen extends Component {
               />
             </CardActions>
           </Card>
+          <Snackbar message="La room indiquée n'existe pas ou le mot de passe est incorrect" open={this.state.hasTriedToLogin} />
         </form>
       </DocumentTitle>
     )

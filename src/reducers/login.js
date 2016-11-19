@@ -1,7 +1,6 @@
 import { LOGIN } from '../action-creators.js'
 import sha1 from 'sha1'
 
-
 export default function login (state, action) {
   switch (action.type) {
     case LOGIN:
