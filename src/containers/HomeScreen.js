@@ -10,6 +10,6 @@ export class HomeScreen extends Component {
   }
 }
 
-const mapStateToProps = ({ currentRoom }) => ({ currentRoom })
+const mapStateToProps = ({ currentRoomId }) => ({ currentRoomId })
 
 export default connect(mapStateToProps)(HomeScreen)

@@ -6,11 +6,11 @@ export default function login (state, action) {
     case LOGIN:
       return {
         ...state,
-        currentRoom: state.rooms.reduce((acc, room) => {
+        currentRoomId: state.rooms.reduce((acc, room) => {
           const {roomName, password} = action
           const {name: currentRoomName, password: expectedPassword} = room
-          return (currentRoomName === roomName && expectedPassword === sha1(roomName + password)) ? room : null
-        }, null)
+          return (currentRoomName === roomName && expectedPassword === sha1(roomName + password)) ? room.id : acc
+        }, 0)
       }
     default:
       return state
