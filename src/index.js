@@ -5,8 +5,9 @@ import { Provider } from 'react-redux'
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory as history } from 'react-router'
-import { install as installOfflineHandling } from 'offline-plugin/runtime'
-import store from './store'
+// import { install as installOfflineHandling } from 'offline-plugin/runtime'
+import store, { loggedIn } from './store'
+import UserExpensesScreen from './containers/UserExpensesScreen'
 
 // DEV NOTE: only required until Material UI 0.16+, as it won't use
 // `onTouchTap` unduly anymore.
@@ -18,13 +19,11 @@ injectTapEventPlugin()
 import App from './components/app'
 import HomeScreen from './containers/HomeScreen'
 
-// import store, { loggedIn } from './store'
-
-/* function requireAuth (nextState, replace) {
+function requireAuth (nextState, replace) {
   if (!loggedIn()) {
     replace('/')
   }
-} */
+}
 
 render(
   <Provider store={store}>
@@ -32,6 +31,7 @@ render(
       <Router history={history}>
         <Route path='/' component={App}>
           <IndexRoute component={HomeScreen} />
+          <Route path='expenses/:id' component={UserExpensesScreen} onEnter={requireAuth} />
         </Route>
       </Router>
     </MuiThemeProvider>
