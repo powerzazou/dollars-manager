@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { Card, CardText, CardTitle } from 'material-ui/Card'
 import DocumentTitle from 'react-document-title'
-// import UserWidget from '../components/UserWidget'
+import ExpenseWidget from '../components/ExpenseWidget'
 
 class UserExpensesScreen extends Component {
   getCurrentRoom () {
@@ -36,7 +36,7 @@ class UserExpensesScreen extends Component {
             <CardText>
               {
                 this.getCurrentUserExpenses().map((expense) => {
-                  return <p>{expense.label}</p>
+                  return <ExpenseWidget key={expense.id} expense={expense}/>
                 })
               }
               {

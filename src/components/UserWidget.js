@@ -31,8 +31,8 @@ const UserWidget = ({user: {id, name, currentBudget, maxBudget}}) => {
   )
 }
 
-/* UserWidget.propTypes = {
-  user: PropTypes.isRequired
-} */
+UserWidget.propTypes = {
+  user: PropTypes.object.isRequired
+}
 
 export default UserWidget
