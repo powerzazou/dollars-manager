@@ -14,7 +14,7 @@ class DashboardScreen extends Component {
             <CardText>
               {
                 this.getCurrentRoomUsers().map((user) => {
-                  return <UserWidget user={user} />
+                  return <UserWidget key={user.id} user={user} />
                 })
               }
             </CardText>

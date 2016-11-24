@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
-// import { Card, CardText, CardTitle } from 'material-ui/Card'
+import { Card, CardText, CardTitle } from 'material-ui/Card'
 import DocumentTitle from 'react-document-title'
 // import UserWidget from '../components/UserWidget'
 
@@ -17,18 +17,38 @@ class UserExpensesScreen extends Component {
       return (user.roomId === currentRoomId && Number(user.id) === Number(currentUserId)) ? user : acc
     }, null)
   }
+  getCurrentUserExpenses () {
+    const {currentRoomId, expenses} = this.props
+    const currentUserId = this.getCurrentUser().id
+    return expenses.filter((expense) => {
+      return (expense.roomId === currentRoomId && expense.userId === currentUserId) ? true : false
+    })
+  }
   render () {
+    const currentRoom = this.getCurrentRoom()
     const currentUser = this.getCurrentUser()
+    const title = currentRoom.prettyName + ': ' + currentUser.name
     return (
-      <DocumentTitle title='PROUT'>
+      <DocumentTitle title={title}>
         <div>
-          <h1>SOON</h1>
-          <p>{this.getCurrentUser().name}</p>
+          <Card className='dashboard'>
+            <CardTitle title={currentUser.name} subtitle='Detail des dépenses' />
+            <CardText>
+              {
+                this.getCurrentUserExpenses().map((expense) => {
+                  return <p>{expense.label}</p>
+                })
+              }
+              {
+                this.getCurrentUserExpenses().length === 0 && <p>Aucune dépense à afficher</p>
+              }
+            </CardText>
+          </Card>
         </div>
       </DocumentTitle>
     )
   }
 }
 
-const mapStateToProps = ({ currentRoomId, users, rooms }) => ({ currentRoomId, users, rooms })
+const mapStateToProps = ({ currentRoomId, users, rooms, expenses }) => ({ currentRoomId, users, rooms, expenses })
 export default connect(mapStateToProps)(UserExpensesScreen)

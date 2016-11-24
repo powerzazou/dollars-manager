@@ -12,7 +12,10 @@ const UserWidget = ({user: {id, name, currentBudget, maxBudget}}) => {
       <CardTitle title={name} />
       <CardText>
         {
-          maxBudget > 0 && <Gauge value={currentBudget} max={maxBudget} /> && <small>{currentBudget}€ dépensés sur {maxBudget}€ max</small>
+          maxBudget > 0 && <Gauge value={currentBudget} max={maxBudget} />
+        }
+        {
+          maxBudget > 0 && <small>{currentBudget}€ dépensés sur {maxBudget}€ max</small>
         }
         {
           maxBudget <= 0 && <small>{currentBudget}€ dépensés</small>
@@ -28,8 +31,8 @@ const UserWidget = ({user: {id, name, currentBudget, maxBudget}}) => {
   )
 }
 
-UserWidget.propTypes = {
+/* UserWidget.propTypes = {
   user: PropTypes.isRequired
-}
+} */
 
 export default UserWidget

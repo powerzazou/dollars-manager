@@ -41,6 +41,17 @@ const DEFAULT_STATE = {
       maxBudget: 150,
       currentBudget: 15
     }
+  ],
+  expenses: [
+    {
+      id: 1,
+      userId: 1,
+      roomId: 1,
+      label: 'Dentifrice',
+      details: 'heu bah pour se laver les dents quoi',
+      price: 345,
+      dateTime: '2016-10-21 12:36:14'
+    }
   ]
 
 }
