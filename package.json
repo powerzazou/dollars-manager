@@ -64,7 +64,7 @@
     "react-dom": "^15.1.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.4.1",
-    "react-tap-event-plugin": "^1.0.0",
+    "react-tap-event-plugin": "^2.0.0",
     "redux": "^3.5.2",
     "redux-pouchdb": "0.0.8",
     "sha1": "^1.1.1"
